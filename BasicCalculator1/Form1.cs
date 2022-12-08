@@ -81,7 +81,7 @@ namespace BasicCalculator1
         private void NineButton_Click(object sender, EventArgs e)
         {
             // Causes the button to send the digit to the screen
-            this.UserInputText.Text = this.UserInputText.Text.Insert(this.UserInputText.SelectionStart, "9");
+            InsertTextValue("9");
         }
 
         private void EightButton_Click(object sender, EventArgs e)
@@ -143,6 +143,15 @@ namespace BasicCalculator1
         private void FocusUserInputText()
         {
             this.UserInputText.Focus();
+        }
+
+        /// <summary>
+        /// Collecting button value and sending to textbox,,,
+        /// </summary>
+        /// <param name="value">argument to assign button value</param>
+        private void InsertTextValue(string value)
+        {
+            this.UserInputText.Text = this.UserInputText.Text.Insert(this.UserInputText.SelectionStart, value);
         }
 
         #endregion
