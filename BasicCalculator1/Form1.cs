@@ -255,9 +255,52 @@ namespace BasicCalculator1
         /// <exception cref="NotImplementedException"></exception>
         private void CalculateEquation()
         {
-            throw new NotImplementedException();
+            // TODO make calculations for the calculator.
+
+            var userInput = this.UserInputText.Text;
+
+            // Enums
+            // New class files
+            // Recursive functions
+            // Solution statments
+
+            this.CalculationResultLabel.Text = ParseOperation();
+
+            FocusUserInputText();
+        }
+
+        /// <summary>
+        /// Parses the uses input and equation and calculates the result
+        /// </summary>
+        /// <returns></returns>
+        private string ParseOperation()
+        {
+            try
+            {
+                // Get the user's input from the textbox
+                var userInput = this.UserInputText.Text;
+
+                // Remove all spaces
+                userInput = userInput.Replace(" ", "");
+
+                //Create an operation..
+                var operation = new Operation();
+                var leftSide = true;
+
+                for(int i = 0; i < userInput.Length; i++)
+                {
+                    
+                }
+
+                return string.Empty;
+            }
+            catch(Exception ex)
+            {
+                return $"invalid equation. {ex.Message}";
+            }
         }
 
         #endregion
+
     }
 }
