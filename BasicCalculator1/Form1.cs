@@ -197,6 +197,85 @@ namespace BasicCalculator1
         }
         #endregion
 
+        #region Calculate Equations
+
+        /// <summary>
+        /// Calculate the equation
+        /// </summary>
+        /// <exception cref="NotImplementedException"></exception>
+        private void CalculateEquation()
+        {
+            // TODO make calculations for the calculator.
+
+            var userInput = this.UserInputText.Text;
+
+            // Enums
+            // New class files
+            // Recursive functions
+            // Solution statments
+
+            this.CalculationResultLabel.Text = ParseOperation();
+
+            FocusUserInputText();
+        }
+
+        /// <summary>
+        /// Parses the uses input and equation and calculates the result
+        /// </summary>
+        /// <returns></returns>
+        private string ParseOperation()
+        {
+            try
+            {
+                // Get the user's input from the textbox
+                var userInput = this.UserInputText.Text;
+
+                // Remove all spaces
+                userInput = userInput.Replace(" ", "");
+
+                //Create an operation..
+                var operation = new Operation();
+                var leftSide = true;
+
+                //Loop through each character from left to right..
+                for(int i = 0; i < userInput.Length; i++)
+                {
+                    var myNumbers = "0123456789.";
+
+                    // Check if the current character is a number.
+                    if(myNumbers.Any(c => userInput[i] == c))
+                    {
+                        if (leftSide)
+                        {
+                            operation.leftSide = AddNumberPart(operation.leftSide, userInput[i]);
+                        }
+                    }
+                }
+
+                return string.Empty;
+            }
+            catch(Exception ex)
+            {
+                return $"invalid equation. {ex.Message}";
+            }
+
+        }
+        
+        /// <summary>
+        /// Attepmts to add a new character to the current number and checks for valid characters..
+        /// </summary>
+        /// <param name="currentNumber">The current number string</param>
+        /// <param name="newCharacter">The new chracter to append to string</param>
+        public string AddNumberPart(string currentNumber, char newCharater)
+            {
+                // Check if there is already a . in the number
+                if(newCharater == '.' && currentNumber.Contains('.'))
+                    throw new InvalidOperationException($"Nmber {currentNumber} already contains a dit(.)");
+                return currentNumber + newCharater;
+            }
+
+        #endregion
+
         #region Private Helpers
         /// <summary>
         /// Focuses the user input text
@@ -247,57 +326,6 @@ namespace BasicCalculator1
 
             //Set selection start to zero
             this.UserInputText.SelectionLength = 0;
-        }
-
-        /// <summary>
-        /// Calculate the equation
-        /// </summary>
-        /// <exception cref="NotImplementedException"></exception>
-        private void CalculateEquation()
-        {
-            // TODO make calculations for the calculator.
-
-            var userInput = this.UserInputText.Text;
-
-            // Enums
-            // New class files
-            // Recursive functions
-            // Solution statments
-
-            this.CalculationResultLabel.Text = ParseOperation();
-
-            FocusUserInputText();
-        }
-
-        /// <summary>
-        /// Parses the uses input and equation and calculates the result
-        /// </summary>
-        /// <returns></returns>
-        private string ParseOperation()
-        {
-            try
-            {
-                // Get the user's input from the textbox
-                var userInput = this.UserInputText.Text;
-
-                // Remove all spaces
-                userInput = userInput.Replace(" ", "");
-
-                //Create an operation..
-                var operation = new Operation();
-                var leftSide = true;
-
-                for(int i = 0; i < userInput.Length; i++)
-                {
-                    
-                }
-
-                return string.Empty;
-            }
-            catch(Exception ex)
-            {
-                return $"invalid equation. {ex.Message}";
-            }
         }
 
         #endregion
