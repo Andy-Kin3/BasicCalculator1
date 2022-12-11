@@ -27,6 +27,10 @@ namespace BasicCalculator1
         /// <summary>
         /// Multiply two values...
         /// </summary>
-        Multiply
+        Multiply,
+        /// <summary>
+        /// Give the remainder of the eqaution.
+        /// </summary>
+        Modulus
     }
 }

@@ -1,5 +1,6 @@
 ﻿namespace BasicCalculator1
 {
+    using System.Windows.Forms;
     partial class Form1
     {
         /// <summary>
@@ -65,6 +66,7 @@
             this.UserInputText.Name = "UserInputText";
             this.UserInputText.Size = new System.Drawing.Size(364, 35);
             this.UserInputText.TabIndex = 0;
+            this.UserInputText.TextChanged += new System.EventHandler(this.UserInputText_TextChanged);
             // 
             // CalculationResultLabel
             // 
@@ -131,7 +133,7 @@
             this.CEButton.TabIndex = 0;
             this.CEButton.Text = "CE";
             this.CEButton.UseVisualStyleBackColor = true;
-            this.CEButton.Click += new System.EventHandler(this.CEButton_Click);
+            this.CEButton.Click += new System.EventHandler(this.Button_Clicked);
             // 
             // CButton
             // 
@@ -143,6 +145,7 @@
             this.CButton.TabIndex = 1;
             this.CButton.Text = "C";
             this.CButton.UseVisualStyleBackColor = true;
+            this.CButton.Click += new System.EventHandler(this.Button_Clicked);
             // 
             // DelButton
             // 
@@ -154,7 +157,7 @@
             this.DelButton.TabIndex = 2;
             this.DelButton.Text = "Del";
             this.DelButton.UseVisualStyleBackColor = true;
-            this.DelButton.Click += new System.EventHandler(this.DelButton_Click);
+            this.DelButton.Click += new System.EventHandler(this.Button_Clicked);
             // 
             // PercentageButton
             // 
@@ -166,7 +169,7 @@
             this.PercentageButton.TabIndex = 3;
             this.PercentageButton.Text = "%";
             this.PercentageButton.UseVisualStyleBackColor = true;
-            this.PercentageButton.Click += new System.EventHandler(this.PercentageButton_Click);
+            this.PercentageButton.Click += new System.EventHandler(this.Button_Clicked);
             // 
             // SevenButton
             // 
@@ -178,7 +181,7 @@
             this.SevenButton.TabIndex = 4;
             this.SevenButton.Text = "7";
             this.SevenButton.UseVisualStyleBackColor = true;
-            this.SevenButton.Click += new System.EventHandler(this.SevenButton_Click);
+            this.SevenButton.Click += new System.EventHandler(this.Button_Clicked);
             // 
             // EightButton
             // 
@@ -192,7 +195,7 @@
             this.EightButton.TabIndex = 5;
             this.EightButton.Text = "8";
             this.EightButton.UseVisualStyleBackColor = true;
-            this.EightButton.Click += new System.EventHandler(this.EightButton_Click);
+            this.EightButton.Click += new System.EventHandler(this.Button_Clicked);
             // 
             // NineButton
             // 
@@ -204,7 +207,7 @@
             this.NineButton.TabIndex = 6;
             this.NineButton.Text = "9";
             this.NineButton.UseVisualStyleBackColor = true;
-            this.NineButton.Click += new System.EventHandler(this.NineButton_Click);
+            this.NineButton.Click += new System.EventHandler(this.Button_Clicked);
             // 
             // MultiplyButton
             // 
@@ -216,7 +219,7 @@
             this.MultiplyButton.TabIndex = 7;
             this.MultiplyButton.Text = "x";
             this.MultiplyButton.UseVisualStyleBackColor = true;
-            this.MultiplyButton.Click += new System.EventHandler(this.MultiplyButton_Click);
+            this.MultiplyButton.Click += new System.EventHandler(this.Button_Clicked);
             // 
             // FourButton
             // 
@@ -228,7 +231,7 @@
             this.FourButton.TabIndex = 8;
             this.FourButton.Text = "4";
             this.FourButton.UseVisualStyleBackColor = true;
-            this.FourButton.Click += new System.EventHandler(this.FourButton_Click);
+            this.FourButton.Click += new System.EventHandler(this.Button_Clicked);
             // 
             // FiveButton
             // 
@@ -240,7 +243,7 @@
             this.FiveButton.TabIndex = 9;
             this.FiveButton.Text = "5";
             this.FiveButton.UseVisualStyleBackColor = true;
-            this.FiveButton.Click += new System.EventHandler(this.FiveButton_Click);
+            this.FiveButton.Click += new System.EventHandler(this.Button_Clicked);
             // 
             // SixButton
             // 
@@ -252,7 +255,7 @@
             this.SixButton.TabIndex = 10;
             this.SixButton.Text = "6";
             this.SixButton.UseVisualStyleBackColor = true;
-            this.SixButton.Click += new System.EventHandler(this.SixButton_Click);
+            this.SixButton.Click += new System.EventHandler(this.Button_Clicked);
             // 
             // MinusButton
             // 
@@ -264,7 +267,7 @@
             this.MinusButton.TabIndex = 11;
             this.MinusButton.Text = "-";
             this.MinusButton.UseVisualStyleBackColor = true;
-            this.MinusButton.Click += new System.EventHandler(this.MinusButton_Click);
+            this.MinusButton.Click += new System.EventHandler(this.Button_Clicked);
             // 
             // OneButton
             // 
@@ -276,7 +279,7 @@
             this.OneButton.TabIndex = 12;
             this.OneButton.Text = "1";
             this.OneButton.UseVisualStyleBackColor = true;
-            this.OneButton.Click += new System.EventHandler(this.OneButton_Click);
+            this.OneButton.Click += new System.EventHandler(this.Button_Clicked);
             // 
             // TwoButton
             // 
@@ -288,7 +291,7 @@
             this.TwoButton.TabIndex = 13;
             this.TwoButton.Text = "2";
             this.TwoButton.UseVisualStyleBackColor = true;
-            this.TwoButton.Click += new System.EventHandler(this.TwoButton_Click);
+            this.TwoButton.Click += new System.EventHandler(this.Button_Clicked);
             // 
             // ThreeButton
             // 
@@ -300,7 +303,7 @@
             this.ThreeButton.TabIndex = 14;
             this.ThreeButton.Text = "3";
             this.ThreeButton.UseVisualStyleBackColor = true;
-            this.ThreeButton.Click += new System.EventHandler(this.ThreeButton_Click);
+            this.ThreeButton.Click += new System.EventHandler(this.Button_Clicked);
             // 
             // AddButton
             // 
@@ -312,7 +315,7 @@
             this.AddButton.TabIndex = 15;
             this.AddButton.Text = "+";
             this.AddButton.UseVisualStyleBackColor = true;
-            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
+            this.AddButton.Click += new System.EventHandler(this.Button_Clicked);
             // 
             // DivideButton
             // 
@@ -324,7 +327,7 @@
             this.DivideButton.TabIndex = 16;
             this.DivideButton.Text = "/";
             this.DivideButton.UseVisualStyleBackColor = true;
-            this.DivideButton.Click += new System.EventHandler(this.DivideButton_Click);
+            this.DivideButton.Click += new System.EventHandler(this.Button_Clicked);
             // 
             // ZeroButton
             // 
@@ -336,7 +339,7 @@
             this.ZeroButton.TabIndex = 17;
             this.ZeroButton.Text = "0";
             this.ZeroButton.UseVisualStyleBackColor = true;
-            this.ZeroButton.Click += new System.EventHandler(this.ZeroButton_Click);
+            this.ZeroButton.Click += new System.EventHandler(this.Button_Clicked);
             // 
             // PointButton
             // 
@@ -348,7 +351,7 @@
             this.PointButton.TabIndex = 18;
             this.PointButton.Text = ".";
             this.PointButton.UseVisualStyleBackColor = true;
-            this.PointButton.Click += new System.EventHandler(this.PointButton_Click);
+            this.PointButton.Click += new System.EventHandler(this.Button_Clicked);
             // 
             // EqualsButton
             // 
@@ -360,7 +363,7 @@
             this.EqualsButton.TabIndex = 19;
             this.EqualsButton.Text = "=";
             this.EqualsButton.UseVisualStyleBackColor = true;
-            this.EqualsButton.Click += new System.EventHandler(this.EqualsButton_Click);
+            this.EqualsButton.Click += new System.EventHandler(this.Button_Clicked);
             // 
             // Form1
             // 
@@ -386,7 +389,7 @@
         private System.Windows.Forms.TextBox UserInputText;
         private System.Windows.Forms.Label CalculationResultLabel;
         private System.Windows.Forms.TableLayoutPanel ButtonPanel;
-        private System.Windows.Forms.Button CEButton;
+        private Button CEButton;
         private System.Windows.Forms.Button CButton;
         private System.Windows.Forms.Button DelButton;
         private System.Windows.Forms.Button PercentageButton;

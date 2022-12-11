@@ -241,16 +241,69 @@ namespace BasicCalculator1
                 for(int i = 0; i < userInput.Length; i++)
                 {
                     var myNumbers = "0123456789.";
+                    var myOperators = "*/+-%.";
 
                     // Check if the current character is a number.
-                    if(myNumbers.Any(c => userInput[i] == c))
+                    if (myNumbers.Any(c => userInput[i] == c))
                     {
                         if (leftSide)
                         {
                             operation.leftSide = AddNumberPart(operation.leftSide, userInput[i]);
                         }
+                        else
+                        {
+                            operation.rightSide = AddNumberPart(operation.rightSide, userInput[i]);
+                        }
+                    }
+
+                    // If it is an operator then assign an operator type. 
+                    else if(myOperators.Any(c => userInput[i] == c))
+                        {
+                            // If on the right side then calculate the current operation..
+                            if (!leftSide)
+                            {
+                                var operatorType = GetOperatorType(userInput[i]);
+
+                                if (operation.rightSide.Length == 0)
+                                {
+                                    //Check if the operation isn't equal to minus and indicate
+                                    if (operatorType != OperationType.Minus)
+                                        throw new InvalidOperationException($"Invalid operator at the begining avoid operator if not minus");
+
+                                    // If there is no number on the left of the minus, concatenate the minus with the immediate digit
+                                    operation.rightSide += userInput[i];
+                                }
+                            
+                        }
+                            else
+                            {
+                                var operatorType = GetOperatorType(userInput[i]);
+
+                                //Check if we have a right side number.
+                                if(operation.leftSide.Length == 0)
+                                {
+                                    //Check if the operation isn't equal to minus and indicate
+                                    if(operatorType != OperationType.Minus)
+                                        throw new InvalidOperationException($"Invalid operator at the begining avoid operator if not minus");
+
+                                    // If there is no number on the left of the minus, concatenate the minus with the immediate digit
+                                    operation.leftSide += userInput[i];
+                                }
+                                else
+                                {
+                                    // Moving to the right side with an operator and a number on the left side.
+
+                                    //Set the operation type
+                                    operation.OperationType = operatorType;
+
+                                    // Move to the right side
+                                    leftSide = false;
+
+                                }
+                            }
                     }
                 }
+                return CalculateOperation(operation);
 
                 return string.Empty;
             }
@@ -260,7 +313,64 @@ namespace BasicCalculator1
             }
 
         }
+        //Calculates the operation and returns the result.
+        private string CalculateOperation(Operation operation)
+        {
+            // Store the number values of the string representation
+            double left = 0;
+            double right = 0;
+
+            // Check if we have a valid left side value
+            if (string.IsNullOrEmpty(operation.leftSide) || !double.TryParse(operation.leftSide, out left))
+                throw new InvalidOperationException($"Left side of the opertion eas not a number. {operation.leftSide}");
+
+            if (string.IsNullOrEmpty(operation.rightSide) || !double.TryParse(operation.rightSide, out right))
+                throw new InvalidOperationException($"Left side of the opertion eas not a number. {operation.rightSide}");
+
+            try
+            {
+                switch (operation.OperationType)
+                {
+                    case OperationType.Add:
+                        return (left + right).ToString();
+                    case OperationType.Minus:
+                        return (left - right).ToString();
+                    case OperationType.Multiply:
+                        return (left * right).ToString();
+                    case OperationType.Divide:
+                        return (left / right).ToString();
+                    case OperationType.Modulus:
+                        return (left % right).ToString();
+                    default:
+                        throw new InvalidOperationException($"The given operator is not valid or Unknown. {operation.OperationType}");
+                }
+            }
+            catch(Exception ex)
+            {
+                throw new InvalidOperationException($"Failed to calculate operation {operation.leftSide} {operation.OperationType} {operation.rightSide}");
+            }
+        }
         
+        /// Accept the <see cref="OperationType"/  >
+        private OperationType GetOperatorType(char newCharacter)
+        {
+            switch (newCharacter)
+            {
+                case '+':
+                    return OperationType.Add;
+                case '-':
+                    return OperationType.Minus;
+                case '*':
+                    return OperationType.Multiply;
+                case '/':
+                    return OperationType.Divide;
+                case '%':
+                    return OperationType.Modulus;
+                default:
+                    throw new InvalidOperationException($"Unknown Operator type {newCharacter}");
+            }
+        }
+
         /// <summary>
         /// Attepmts to add a new character to the current number and checks for valid characters..
         /// </summary>
@@ -330,5 +440,37 @@ namespace BasicCalculator1
 
         #endregion
 
+
+        private ArithmeticOperator Operator;
+        private void UserInputText_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            var button = sender as Button;
+            if(button == CEButton)
+            {
+
+            }
+
+            var numberbuttons = new[] { OneButton, TwoButton, ThreeButton, FourButton, FiveButton, SixButton, SevenButton, EightButton, NineButton, ZeroButton };
+
+            if(numberbuttons.Contains(button))
+            {
+                var buttonValue = (int)button.Tag;
+                UpdateOperation(buttonValue);
+            }
+
+        }
+
+        private void UpdateOperation(int buttonValue)
+        {
+            if (Operator == null)
+            {
+                Operator = new ArithmeticOperator();
+            }
+        }
     }
 }

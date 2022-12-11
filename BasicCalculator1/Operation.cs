@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BasicCalculator1
 {
-   public class Operation
+    public class Operation
     {
         #region Public properties
         /// <summary>
