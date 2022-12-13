@@ -12,25 +12,26 @@ namespace BasicCalculator1
     /// </summary>
     public enum OperationType
     {
+        None = 0,
         /// <summary>
         /// Add a series of numbers
         /// </summary>
-        Add,
+        Add = 1,
         /// <summary>
         /// Substract numbers
         /// </summary>
-        Minus,
+        Minus = 2,
         /// <summary>
         /// Divide a sequence of numbers
         /// </summary>
-        Divide,
+        Divide = 3,
         /// <summary>
         /// Multiply two values...
         /// </summary>
-        Multiply,
+        Multiply = 4,
         /// <summary>
         /// Give the remainder of the eqaution.
         /// </summary>
-        Modulus
+        Modulus = 5,
     }
 }
