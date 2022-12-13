@@ -15,9 +15,16 @@
             return results;
         }
 
+        /// <summary>
+        /// Perfom an operation and store its value
+        /// </summary>
+        /// <param name="operand1">the operand of the left side</param>
+        /// <param name="operand2">the operand on the right side</param>
+        /// <param name="operationType">The type of operation being performed</param>
+        /// <returns></returns>
         private int performOperation(int operand1, int operand2, OperationType operationType)
         {
-            switch(operationType)
+            switch (operationType)
             {
                 case OperationType.Add:
                     return operand1 + operand2;

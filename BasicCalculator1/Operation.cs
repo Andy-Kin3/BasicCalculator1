@@ -27,7 +27,7 @@ namespace BasicCalculator1
         public Operation InnerOperation { get; set; }
         #endregion
 
-        #region
+        #region Operations
         /// <summary>
         /// Default constructor
         /// </summary>

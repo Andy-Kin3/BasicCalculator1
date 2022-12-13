@@ -273,6 +273,17 @@ namespace BasicCalculator1
                                     // If there is no number on the left of the minus, concatenate the minus with the immediate digit
                                     operation.rightSide += userInput[i];
                                 }
+                                else
+                                {
+                                    // Store the current value
+                                    operation.leftSide = CalculateOperation(operation);
+
+                                    // Set the new operator.
+                                    operation.OperationType = operatorType;
+
+                                    // Clear the previous right value
+                                    operation.rightSide = string.Empty;
+                                }
                             
                         }
                             else
@@ -440,24 +451,24 @@ namespace BasicCalculator1
 
         #endregion
 
-
+        #region Other operators
         private ArithmeticOperator Operator;
         private void UserInputText_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void Button_Clicked(object sender, EventArgs e)
         {
             var button = sender as Button;
-            if(button == CEButton)
+            if (button == CEButton) 
             {
 
             }
 
             var numberbuttons = new[] { OneButton, TwoButton, ThreeButton, FourButton, FiveButton, SixButton, SevenButton, EightButton, NineButton, ZeroButton };
 
-            if(numberbuttons.Contains(button))
+            if (numberbuttons.Contains(button))
             {
                 var buttonValue = (int)button.Tag;
                 UpdateOperation(buttonValue);
@@ -472,5 +483,6 @@ namespace BasicCalculator1
                 Operator = new ArithmeticOperator();
             }
         }
+        #endregion
     }
 }
