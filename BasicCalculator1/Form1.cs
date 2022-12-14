@@ -17,6 +17,11 @@ namespace BasicCalculator1
             
         }
 
+        /// <summary>
+        /// Event for buttons when they are clicked
+        /// </summary>
+        /// <param name="sender">The value clicked by the user</param>
+        /// <param name="e">The event areguement</param>
         private void Button_Clicked(object sender, EventArgs e)
         {
             if (this.operationComplete)
@@ -25,13 +30,17 @@ namespace BasicCalculator1
                 this.UserInputText.Text = "";
             }
 
+            // Passing Button event as an object
             var button = sender as Button;
 
+            // This variable contains all the number buttons as integers
             var numberbuttons = new[] { OneButton, TwoButton, ThreeButton, FourButton, FiveButton, SixButton, SevenButton, EightButton, NineButton, ZeroButton };
 
             if(numberbuttons.Contains(button))
             {
+                // Take he value of the button as pass them as a string
                 var buttonValue = int.Parse(button.Tag.ToString());
+                // Updating the operand to the next value.
                 Operator.UpdateOperand(buttonValue);
                 this.UserInputText.Text += button.Text;
                 return;
@@ -46,6 +55,7 @@ namespace BasicCalculator1
                 return;
             }
 
+            // Cancel button acction.
             if(button == CEButton || button == CancelButton)
             {
                 this.Operator = new ArithmeticOperator();
@@ -55,6 +65,7 @@ namespace BasicCalculator1
 
             if(button == DelButton)
             {
+                // Delete button removing the last character from the calculator
                 this.Operator.UndoLastAction();
                 if (this.UserInputText.Text?.Length > 0)
                 {
@@ -65,18 +76,25 @@ namespace BasicCalculator1
 
             if (button == PointButton)
             {
+                // Check if the point button was already inputed before.
                 if (Operator.UpdatePoint())
                 {
+                    //Appending point to the value on the left
                     this.UserInputText.Text += button.Text;
                 }
                 return;
             }
 
+            // Performing the calculation.
             if(button == EqualsButton)
             {
+                // Calculate the equation.
                 var result = this.Operator.Calculate();
+                // Converting the result to string.
                 this.UserInputText.Text = result.ToString();
+                // Calling the ArithmeticOperator operation.
                 this.Operator = new ArithmeticOperator();
+                // Checking if the operation is complete.
                 this.operationComplete = true;
                 return;
             }

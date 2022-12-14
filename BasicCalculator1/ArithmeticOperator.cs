@@ -50,6 +50,10 @@ namespace BasicCalculator1
             }
         }
 
+        /// <summary>
+        /// Responsible for all the values enter by the user
+        /// </summary>
+        /// <param name="value">Collects the value</param>
         internal void UpdateOperand(int value)
         {
             if(this.OperationType == OperationType.None)
@@ -148,8 +152,13 @@ namespace BasicCalculator1
         private bool Operand1PointPending = false;
         private bool Operand2PointPending = false;
 
+        /// <summary>
+        /// Settinng the point button update so users can input two points
+        /// </summary>
+        /// <returns></returns>
         internal bool UpdatePoint()
         {
+            // Check if user has clicked the point button for operand2
             if (Operand2.HasValue)
             {
                 if (Operand2.HasDecimalPoint())
@@ -166,6 +175,7 @@ namespace BasicCalculator1
             {
                 return false;
             }
+            // Check if operand1 has a point.
             if (Operand1.HasValue)
             {
                 if (Operand1.HasDecimalPoint())
